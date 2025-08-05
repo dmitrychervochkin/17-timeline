@@ -1,0 +1,15 @@
+:root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    --timeline-padding: 32px;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,
+body {
+    height: 100%;
+    overflow-y: auto;
+}
+

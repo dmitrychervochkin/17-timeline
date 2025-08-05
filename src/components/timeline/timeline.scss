@@ -1,0 +1,102 @@
+.timeline {
+    --timeline-padding: 50px;
+
+    margin: 20px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 10px;
+}
+.item {
+    position: relative;
+    width: 100%;
+    background-color: #261d2c;
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 22px;
+    transition: background-color 0.1s ease, box-shadow 0.3s ease;
+
+    &::before {
+        content: "";
+        background-color: #261d2c;
+        border-radius: 50%;
+        width: 1rem;
+        height: 1rem;
+        position: absolute;
+        top: 50%;
+        right: calc(var(--timeline-padding) * -1);
+        transform: translate(50%, -50%);
+        border: 8px solid #fff;
+    }
+
+    &.start::after {
+        content: "";
+        background-color: white;
+        width: 20px;
+        height: calc(50% - 10px);
+        position: absolute;
+        right: calc(var(--timeline-padding) * -1);
+        transform: translateX(50%);
+        top: 0;
+    }
+
+    &.end.even::after {
+        content: "";
+        background-color: white;
+        width: 20px;
+        height: calc(50% - 10px);
+        position: absolute;
+        left: calc(var(--timeline-padding) * -1);
+        transform: translateX(-50%);
+        bottom: 0;
+    }
+
+    &.end:not(.even)::after {
+        content: "";
+        background-color: white;
+        width: 20px;
+        height: calc(50% - 10px);
+        position: absolute;
+        right: calc(var(--timeline-padding) * -1);
+        transform: translateX(50%);
+        bottom: 0;
+    }
+
+    &.active {
+        background-color: #8166e0;
+        box-shadow: 0 0 15px 5px #8166e0aa;
+        z-index: 10;
+    }
+}
+
+.even {
+    &::before {
+        content: "";
+        right: auto;
+        left: calc(var(--timeline-padding) * -1);
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media (min-width: 500px) {
+    .item {
+        width: calc(50% - var(--timeline-padding));
+    }
+    .even {
+        align-self: flex-end;
+    }
+    .timeline::after {
+        content: "";
+        width: 3px;
+        background-color: black;
+        height: 100%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: -1;
+    }
+}
